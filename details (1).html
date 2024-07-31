@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./asset/css/style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <div class="header-left">
+            <h1>Highlands</h1>
+        </div>
+        <div class="header-center">
+            <input type="text" placeholder="Chercher une promo ou un éleve">
+        </div>
+        <div class="header-right">
+            <div id="flip-clock" class="flip-clock">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <span class="time" id="hours-top">00</span>
+                        </div>
+                        <div class="flip-card-back">
+                            <span class="time" id="hours-bottom">00</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <span class="time" id="minutes-top">00</span>
+                        </div>
+                        <div class="flip-card-back">
+                            <span class="time" id="minutes-bottom">00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <span class="user-info">Marina Tacite</span>
+        </div>
+    </header>
+
+    <main>
+        <nav id="menu">
+            <ul>
+                <li class="active">
+                    <a href="index.html">Promo</a>
+                </li>
+            </ul>
+            <div id="calendar-container">
+                <div id="calendar-header">
+                    <button id="prevMonth">&lt;</button>
+                    <h2 id="monthYear"></h2>
+                    <button id="nextMonth">&gt;</button>
+                </div>
+                <table id="calendar">
+                    <thead>
+                        <tr>
+                            <th>Dim</th>
+                            <th>Lun</th>
+                            <th>Mar</th>
+                            <th>Mer</th>
+                            <th>Jeu</th>
+                            <th>Ven</th>
+                            <th>Sam</th>
+                        </tr>
+                    </thead>
+                    <tbody id="calendar-body">
+                        <!-- Les cellules du calendrier seront générées ici par JavaScript -->
+                    </tbody>
+                </table>
+                <button id="addEventBtn">Ajouter un événement</button>
+            </div>
+            <div id="eventModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h2>Ajouter un événement</h2>
+                    <form id="eventForm">
+                        <input type="text" id="eventTitle" placeholder="Titre de l'événement" required>
+                        <input type="date" id="eventDate" required>
+                        <textarea id="eventDescription" placeholder="Description de l'événement"></textarea>
+                        <button type="submit">Ajouter</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+        <div id="deStudent">
+            <h2>Ajout de nouvel eleve</h2>
+        </div>
+        <div id="studentCreator">
+            <form id="studentFromCreator">
+                <div class="container-form">
+                    <div>
+                        <label for="firstNameStudent">Nom</label>
+                        <input type="text" placeholder="Nom de l'élève" id="firstName">
+                    </div>
+                    <div>
+                        <label for="lastNameStudent">Prenom</label>
+                        <input type="text" placeholder="Prenom de l'élève" id="lastName">
+                    </div>
+                    <div class="secondpart">
+                        <label for="age">Age</label>
+                        <input type="text" placeholder="age" id="age">
+                        <div class="buttons-container">
+                            <button id="addStudentButton" type="button" class="button-arounder">Ajouter un
+                                étudiant</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div id="studentContainer" class="scroller"></div>
+            <form id="updateStudentForm" autocomplete="off">
+                <input type="hidden" id="updateStudentId">
+                <input type="text" id="updateStudentFirstName" placeholder="Prénom">
+                <input type="text" id="updateStudentLastName" placeholder="Nom">
+                <input type="number" id="updateStudentAge" placeholder="Âge">
+                <button type="submit">Mettre à jour l'étudiant</button>
+            </form>
+        </div>
+    </main>
+    <script src="./asset/js/main.js"></script>
+</body>
+
+</html>

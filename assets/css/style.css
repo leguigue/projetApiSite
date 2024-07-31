@@ -1,0 +1,821 @@
+@font-face {
+    font-family: Vogue;
+    src: url(../font/Vogue.ttf);
+}
+
+@font-face {
+    font-family: SimpleNote;
+    src: url(../font/SimpleNote.ttf);
+}
+
+body {
+    margin: 0%;
+    background-image: url(../images/mordor.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    font-family: SimpleNote;
+    max-height: 100vh;
+    max-width: 100vw;
+}
+.hidden{
+    display: none;
+}
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.68);
+    padding: 10px 20px;
+}
+
+/* en-tete de la page */
+.header-left h1 {
+    margin: 0;
+    font-family: Vogue;
+}
+
+.header-center input {
+    width: 20vw;
+    padding: 5px;
+    margin-left: 150px;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+
+}
+
+/* horloge */
+.flip-clock {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+.flip-card {
+    perspective: 1000px;
+    margin: 0 2px;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 2vw;
+    height: 15px;
+    text-align: center;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+    bottom: 5px;
+    right: 10px;
+}
+
+.flip-card-front,
+.flip-card-back {
+    position: absolute;
+    width: 100%;
+    backface-visibility: hidden;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flip-card-front {
+    background-color: #00000089;
+    color: white;
+}
+
+.flip-card-back {
+    background-color: #070707;
+    color: white;
+    transform: rotateX(180deg);
+}
+
+/* barre de nav */
+nav {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    background: rgba(0, 0, 0, 0.666);
+    color: white;
+    padding: 20px;
+    text-decoration: none;
+    height: 91vh;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    margin: 10px 0;
+    position: relative;
+    top: 10px;
+}
+
+nav ul li.active {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 5px;
+    border-radius: 5px;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+
+}
+
+/* calendrier */
+#calendar-container {
+    position: relative;
+    top: 10%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+#calendar {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#calendar th,
+#calendar td {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 4px;
+    text-align: center;
+    color: white;
+}
+
+#calendar th {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+#calendar td:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+}
+
+#calendar .today {
+    background-color: rgba(230, 243, 255, 0.3);
+    font-weight: bold;
+}
+
+#prevMonth,
+#nextMonth {
+    background-color: #66a6c28e;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 2px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+#monthYear {
+    font-size: 16px;
+    margin: 0;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    gap: 50px;
+}
+
+.modal-content {
+    background-color: #fefefebe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 20px;
+    width: 80%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    right: 20%;
+}
+
+.modal-content #eventForm {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 300px;
+}
+
+.modal-content #eventForm input,
+.modal-content #eventForm textarea,
+.modal-content #eventForm button {
+    margin-bottom: 10px;
+    padding: 8px;
+    width: 100%;
+}
+
+.modal-content #eventForm button {
+    background-color: #4c9bafbf;
+    border-radius: 20px;
+    position: relative;
+    left: 10px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.modal-content #eventForm button:hover {
+    background-color: #317fb4;
+}
+
+.modal-content h2 {
+    color: #070707;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    position: relative;
+    left: 50%;
+    bottom: 15px;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.event-dot {
+    display: flex;
+    flex-direction: column;
+    height: 8px;
+    width: 8px;
+    background-color: #3773d4;
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 2px;
+}
+
+#calendar td {
+    position: relative;
+}
+
+#calendar td .event-list {
+    display: none;
+    position: absolute;
+    background-color: rgba(1, 1, 1, 0.822);
+    border: 1px solid #ddd;
+    padding: 5px;
+    z-index: 1;
+    left: 100%;
+    top: 0;
+    min-width: 150px;
+}
+
+#calendar td:hover .event-list {
+    display: block;
+}
+
+#addEventBtn {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #f8f9f88f;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+main {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* form de promo */
+#dePromo {
+    position: relative;
+    height: fit-content;
+    top: 70px;
+    left: 30%;
+    font-family: Vogue;
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid;
+    background-color: rgba(240, 248, 255, 0.658);
+}
+
+#promoCreator {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    height: fit-content;
+    position: relative;
+    top: 270px;
+    right: 10%;
+    gap: 30px;
+
+}
+
+#promoFromCreator {
+
+    display: flex;
+    flex-direction: column;
+    border: 1px solid;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.808);
+    border-radius: 10px;
+    gap: 15px;
+    height: fit-content;
+}
+
+#promosContainer {
+    flex: 3;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+
+}
+
+#promosContainer .promo {
+    background-color: rgba(255, 255, 255, 0.808);
+    padding: 10px;
+    height: fit-content;
+    text-align: center;
+}
+
+.promo {
+    text-align: center;
+    width: 20vh;
+    height: 15vh;
+    font-size: 15px;
+    border-radius: 10px;
+}
+
+.promo .delete {
+    font-size: 15px;
+    text-align: center;
+    border: none;
+    background: none;
+    position: relative;
+    bottom: 75px;
+    left: 65%;
+}
+
+.promo a {
+    text-decoration: none;
+    right: 18px;
+    color: #317fb4;
+    display: flex;
+    justify-content: center;
+}
+
+#updateCreator {
+    display: none;
+    /* Cache le formulaire par défaut */
+}
+
+.update {
+    position: relative;
+    right: 15%;
+}
+
+#updatePromoForm {
+    border: 1px solid;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.808);
+    border-radius: 10px;
+    width: 13vw;
+    height: fit-content;
+    margin-top: 20px;
+
+}
+#updatePromoForm h2{
+    font-size: 18px;
+    text-align: center;
+}
+#updatePromoName{
+    position: relative;
+    left: 25px;
+}
+
+#updatePromoForm button {
+    position: relative;
+    left: 20%;
+}
+
+#upgradeCreator.visible,
+#updatePromoForm.visible {
+    display: block;
+}
+
+
+/* formulaire des étudiants */
+#deStudent {
+    position: relative;
+    left: 29%;
+    top: 70px;
+    height: fit-content;
+    font-family: Vogue;
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid;
+    background-color: rgba(240, 248, 255, 0.632);
+}
+
+#studentCreator {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    position: relative;
+    top: 270px;
+    left: 5%;
+    gap: 30px;
+}
+
+#studentFromCreator {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    right: 50px;
+    top: 25%;
+    border: 1px solid;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.73);
+    border-radius: 10px;
+    gap: 15px;
+    width: 50%;
+}
+
+.container-form {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 5px;
+    flex-wrap: wrap;
+
+}
+
+.container-form div {
+    width: 40%;
+    text-align: center;
+}
+
+.secondpart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px;
+    position: relative;
+}
+
+.secondpart input {
+    width: 10vw;
+    margin-bottom: 15px;
+}
+
+#studentContainer {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    position: relative;
+    right: 50%;
+}
+
+#studentContainer .student {
+    background-color: rgba(255, 255, 255, 0.808);
+    padding: 10px;
+    height: fit-content;
+    text-align: center;
+}
+
+.student {
+    text-align: center;
+    width: 20vh;
+    height: 15vh;
+    font-size: 15px;
+    border-radius: 10px;
+}
+
+.student .supp {
+    font-size: 15px;
+    text-align: center;
+    border: none;
+    background: none;
+    position: relative;
+    bottom: 105px;
+    left: 55px;
+    color: rgb(188, 26, 26);
+}
+
+.student .modify {
+    font-size: 15px;
+    text-align: center;
+    border: none;
+    background: none;
+    position: relative;
+    left: 13%;
+}
+
+#updateStudentForm {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.73);
+    border-radius: 10px;
+    gap: 15px;
+    width: 20%;
+    height: fit-content;
+    position: relative;
+    left: 60%;
+    bottom: 410px;
+}
+#updateStudentForm h2{
+    font-size: 18px;
+    text-align: center;
+}
+
+#updateStudentForm input {
+    position: relative;
+    left: 25%;
+    width: 50%;
+}
+
+#updateStudentForm button {
+    position: relative;
+    left: 30%;
+    width: 40%;
+}
+
+/* bouttons des formulaires */
+.buttons-container {
+    width: 10vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+button {
+    background: rgb(255, 255, 255);
+    border: solid 1px black;
+    padding: .375em 1.125em;
+    font-size: 12px;
+}
+
+.button-arounder {
+    font-size: 12px;
+    background: hsla(180, 14%, 99%, 0.368);
+    color: hsl(0, 0%, 0%);
+    box-shadow: 0 0px 0px hsla(195, 40%, 60%, 0.2);
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    --dur: .15s;
+    --delay: .15s;
+    --radius: 16px;
+    transition:
+        border-top-left-radius var(--dur) var(--delay) ease-out,
+        border-top-right-radius var(--dur) calc(var(--delay) * 2) ease-out,
+        border-bottom-right-radius var(--dur) calc(var(--delay) * 3) ease-out,
+        border-bottom-left-radius var(--dur) calc(var(--delay) * 4) ease-out,
+        box-shadow calc(var(--dur) * 4) ease-out,
+        transform calc(var(--dur) * 4) ease-out,
+        background calc(var(--dur) * 4) steps(4, jump-end);
+}
+
+.button-arounder:hover,
+.button-arounder:focus {
+    box-shadow: 0 4px 8px hsla(190deg, 15%, 5%, .2);
+    transform: translateY(-4px);
+    background: hsla(205, 60%, 48%, 0.423);
+    border-top-left-radius: var(--radius);
+    border-top-right-radius: var(--radius);
+    border-bottom-left-radius: var(--radius);
+    border-bottom-right-radius: var(--radius);
+}
+
+#addStudentButton {
+    width: 20vw;
+}
+
+.student .modify,
+.promo .update {
+    --c: #48535551;
+    /* the color*/
+
+    box-shadow: 0 0 0 .1em inset var(--c);
+    --_g: linear-gradient(var(--c) 0 0) no-repeat;
+    background:
+        var(--_g) calc(var(--_p, 0%) - 100%) 0%,
+        var(--_g) calc(200% - var(--_p, 0%)) 0%,
+        var(--_g) calc(var(--_p, 0%) - 100%) 100%,
+        var(--_g) calc(200% - var(--_p, 0%)) 100%;
+    background-size: 50.5% calc(var(--_p, 0%)/2 + .5%);
+    outline-offset: .1em;
+    transition: background-size .4s, background-position 0s .4s;
+}
+
+.student .modify:hover,
+.promo .update:hover {
+    --_p: 100%;
+    transition: background-position .4s, background-size 0s;
+}
+
+.student .modify:active,
+.promo .update:active {
+    box-shadow: 0 0 9e9q inset #0009;
+    background-color: var(--c);
+    color: #fff;
+}
+
+.student .modify,
+.promo .update {
+    font-family: system-ui, sans-serif;
+    font-size: 12px;
+    cursor: pointer;
+    padding: .1em .6em;
+    font-weight: bold;
+    border: none;
+}
+
+@media (max-width: 420px) {
+    body {
+        background-size: cover;
+        background-repeat: repeat-y;
+    }
+
+    header {
+
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px 20px;
+        gap: 20px;
+
+    }
+
+    .header-center input {
+        position: relative;
+        right: 80px;
+        width: 60vw;
+    }
+
+    .header-right {
+        gap: 10px;
+    }
+
+    .user-info {
+        font-size: 12px;
+        position: relative;
+        left: 150%;
+    }
+
+    .flip-clock {
+        gap: 10px;
+        position: relative;
+        left: 220%;
+        bottom: 95px;
+    }
+
+    .flip-card-inner {
+        width: 20px;
+    }
+
+    .flip-card-front,
+    .flip-card-back {
+        font-size: 15px;
+    }
+
+    nav {
+        width: 25%;
+        flex-direction: column;
+    }
+
+    nav ul {
+        display: flex;
+        flex-direction: row;
+    }
+
+    nav ul li {
+        margin: 0 5px;
+    }
+
+    nav a {
+        font-size: 12px;
+    }
+
+    #calendar-container {
+        top: 5%;
+        width: 100%;
+    }
+
+    .ntm {
+        width: 100%;
+        overflow: scroll;
+    }
+
+    #promoCreator {
+        flex-direction: column;
+        right: 30%;
+    }
+
+    #dePromo {
+        position: relative;
+        left: 15%;
+    }
+
+    #promoCreator form {
+        width: 50%;
+        margin: 0 auto;
+    }
+
+    #promosContainer {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .promo {
+        width: 90%;
+        height: auto;
+    }
+
+    #studentCreator {
+        top: 100px;
+        left: 0;
+    }
+
+    #studentCreator form {
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    #studentContainer {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        right: 0;
+    }
+
+    .student {
+        width: 90%;
+        height: auto;
+    }
+
+    .buttons-container {
+        width: auto;
+    }
+
+    button {
+        width: 100%;
+        font-size: 16px;
+    }
+
+    .button-arounder {
+        font-size: 16px;
+    }
+}
+.hidden{
+    display: none !important;
+}
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden; /* Empêche le scrolling */
+}

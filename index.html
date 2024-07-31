@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/style.css">
+
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <h1>Swaggisterie</h1>
+        </div>
+        <div class="header-center">
+            <input type="text" placeholder="Chercher une promo ou un éleve">
+        </div>
+        <div class="header-right">
+            <div id="flip-clock" class="flip-clock">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <span class="time" id="hours-top">00</span>
+                        </div>
+                        <div class="flip-card-back">
+                            <span class="time" id="hours-bottom">00</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <span class="time" id="minutes-top">00</span>
+                        </div>
+                        <div class="flip-card-back">
+                            <span class="time" id="minutes-bottom">00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <span class="user-info"> GOUIGOUI</span>
+        </div>
+    </header>
+    <main>
+        <nav id="menu">
+            <ul>
+                <li class="active">
+                    <a href="index.html">Promo</a>
+                </li>
+            </ul>
+            <div id="calendar-container">
+                <div id="calendar-header">
+                    <button id="prevMonth">&lt;</button>
+                    <h2 id="monthYear"></h2>
+                    <button id="nextMonth">&gt;</button>
+                </div>
+                <div class="ntm">
+                    <table id="calendar">
+                        <thead>
+                            <tr>
+                                <th>Dim</th>
+                                <th>Lun</th>
+                                <th>Mar</th>
+                                <th>Mer</th>
+                                <th>Jeu</th>
+                                <th>Ven</th>
+                                <th>Sam</th>
+                            </tr>
+                        </thead>
+                        <tbody id="calendar-body">
+                            <!-- Les cellules du calendrier seront générées ici par JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+                <button id="addEventBtn">Ajouter un événement</button>
+            </div>
+            <div id="eventModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h2>Ajouter un événement</h2>
+                    <form id="eventForm">
+                        <input type="text" id="eventTitle" placeholder="Titre de l'événement" required>
+                        <input type="date" id="eventDate" required>
+                        <textarea id="eventDescription" placeholder="Description de l'événement"></textarea>
+                        <button type="submit">Ajouter</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+        <div id="dePromo">
+            <h2>Creation des PROMO's</h2>
+        </div>
+        <div id="promoCreator">
+            <form id="promoFromCreator" autocomplete="off">
+                <label for="namePromo">Nom de la promo</label>
+                <input type="text" placeholder="Nom de la promo" id="name">
+                <label for="dated">Date du debut</label>
+                <input type="date" id="startDate">
+                <label for="datef">Date de fin</label>
+                <input type="date" id="endDate">
+                <div class="buttons-container">
+                    <button id="addPromoButton" type="button" class="button-arounder">Ajouter une promo</button>
+                </div>
+            </form autocomplete="off">
+            <div id="promosContainer" class="scroller"></div>
+            <div id="upgradeCreator">
+            <form id="updatePromoForm" class="hidden">
+                <h2>Modification de la promo</h2>
+                <input type="hidden" id="updatePromoId">
+                <input type="text" id="updatePromoName" placeholder="Nom de la promo">
+                <input type="date" id="updatePromoStartDate">
+                <input type="date" id="updatePromoEndDate">
+                <button type="submit">Mettre à jour la promo</button>
+            </form>
+        </div>
+        </div>
+        </div>
+    </main>
+    <script src="./assets/js/main.js"></script>
+</body>
+
+</html>
